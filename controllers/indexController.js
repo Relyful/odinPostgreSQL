@@ -2,7 +2,13 @@ const path = require('path');
 const db = require("../db/queries");
 
 exports.indexGet = async (req, res) => {
-  const usernames = await db.getAllUsernames();
+  let usernames = "";
+  if (req.query.search) {
+    let searchQ = req.query.search;    
+    usernames = await db.searchUsernames(searchQ);
+  } else {
+    usernames = await db.getAllUsernames();
+  }
   console.log("Usernames: ", usernames);
   res.send("Usernames: " + usernames.map(user => user.username).join(", "));
 };

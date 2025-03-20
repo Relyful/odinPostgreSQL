@@ -9,7 +9,13 @@ async function insertUsername(username) {
   await pool.query("INSERT INTO usernames (username) VALUES ($1)", [username]);
 }
 
+async function searchUsernames(searchQ) {
+  const result = await pool.query("SELECT * FROM usernames WHERE username ILIKE $1", [`${searchQ.trim()}%`]);
+  return result.rows;
+}
+
 module.exports = {
   getAllUsernames,
-  insertUsername
+  insertUsername,
+  searchUsernames
 };
