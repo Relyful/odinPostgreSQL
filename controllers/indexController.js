@@ -21,4 +21,9 @@ exports.newPost = async (req, res) => {
   const { username } = req.body;
   await db.insertUsername(username);
   res.redirect("/");
+};
+
+exports.deleteGet = async (req, res) => {
+  await db.deleteAll();
+  res.redirect('/');
 }

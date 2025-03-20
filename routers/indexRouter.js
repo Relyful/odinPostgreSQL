@@ -6,5 +6,6 @@ const indexRouter = Router();
 indexRouter.get('/', indexController.indexGet);
 indexRouter.get('/new', indexController.newGet);
 indexRouter.post('/new', indexController.newPost);
+indexRouter.get('/delete', indexController.deleteGet);
 
 module.exports = indexRouter;
